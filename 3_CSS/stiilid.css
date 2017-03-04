@@ -1,0 +1,9 @@
+.rohelineTekst {color: green;}
+.allaJoonitudTekst {text-decoration: underline;}
+.tuhmrohelineTaust {background-color: #548B54;}
+.font2xSuurem {font-size: 150%;}
+.monospaceFont {font-family: monospace;}
+.mustPiirKollaneTaust {border: 3px solid black; background: yellow;}
+.ymarnurgadKatkendlikPiir {border: 0.5px dashed; border-radius: 45px;}
+.kaldkirjasKeskelTekst {font-style: italic; text-align: center;}
+.kursorCrosshair {cursor: crosshair;}
