@@ -1,0 +1,21 @@
+.bead{
+	height: 50px;
+	width: 50px;
+	background-color: white;
+	border-radius: 50%;
+	box-shadow: 0px -11px 23px -3px brown inset;
+	margin-top: -25px;
+	float: left;
+}
+.row{
+	clear: both;
+	border: 2px solid grey;
+	margin-top: 50px;
+}
+#raam{
+	border: 13px brown outset;
+	padding-bottom: 50px;
+}
+.bead.parem{
+	float: right;
+}
