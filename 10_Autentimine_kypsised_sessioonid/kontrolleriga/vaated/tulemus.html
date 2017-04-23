@@ -1,0 +1,13 @@
+<?php if ($id):	?>
+	<h3>Aitäh, oled teinud oma valiku.</h3>
+	<p>Valisid selle ilusa pildi: <br/>
+		<img src="<?php echo $pildid[$id]['src'];?>" alt="väljavalitu"/></p>
+<?php else: ?>
+	<?php if (empty($_SESSION)): ?>
+	<h3>Sellist pilti ei eksisteeri, palun tee uus <a href="?page=vote">valik</a>.</h3>
+	<?php else: ?>
+	<h3>Oled juba korra valinud.</h3>
+	<p>Valisid pildi nr <?php echo $_SESSION['votedFor'];?></p>
+	<p>Sessiooni lõpetamiseks vajuta <a href="?page=exit">siin</a>.</p>
+	<?php endif; ?>
+<?php endif; ?>
