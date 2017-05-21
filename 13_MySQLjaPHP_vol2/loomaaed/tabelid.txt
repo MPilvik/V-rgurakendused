@@ -1,0 +1,33 @@
+/*Uue tabeli loomine:*/
+CREATE TABLE loomaaedMPilvik(
+	id integer PRIMARY KEY AUTO_INCREMENT ,
+	nimi varchar( 100 ) ,
+	vanus integer,
+	liik varchar( 200 ) ,
+	puur integer
+)
+
+/*Eelnevalt loodud tabeli täitmine vähemalt 5 reaga*/
+INSERT INTO loomaaedMPilvik (nimi, vanus, liik, puur) VALUES
+("Bobo", 12, "pildid/gorilla.jpg", 1),
+("Chiquita", 28, "pildid/gorilla.jpg", 2),
+("Laine", 2, "pildid/hare.jpg", 3),
+("Leo", 8, "pildid/leopard.jpg", 4),
+("Toomas", 5, "pildid/tiger.jpg", 5),
+("Madli", 4, "pildid/tiger.jpg", 5),
+("Makale", 9, "pildid/lion.jpg", 6),
+("Elsa", 6, "pildid/lion.jpg", 6)
+
+/*Külajastajate tabeli loomine*/
+CREATE TABLE IF NOT EXISTS loomaaedMPilvik_kylastajad (
+	id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	username varchar(100) NOT NULL,
+	passw varchar(40) NOT NULL,
+	visits int(11) NOT NULL
+)
+
+/*Külastajate lisamine tabelisse*/
+INSERT INTO loomaaedMPilvik_kylastajad (username, passw, visits) VALUES
+("Peeter", SHA1("peeter"), 3),
+("Ants", SHA1("paroOl"), 16),
+("AnimalFreak", SHA1("t3h44jLk2"), 5)
