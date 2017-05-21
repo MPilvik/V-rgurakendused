@@ -1,0 +1,19 @@
+<style>
+p.loomad {display: inline;}
+</style>
+
+<?php if (!empty($puurid)):
+		foreach($puurid as $id => $puur): ?>
+		<div class = "puur">
+			<p>
+				Puuris <?php echo $id; ?> on:
+			</p>
+			<p class="loomad">
+				<?php foreach ($puur as $id => $puuriloom): ?>
+					<?php echo $puur[$id]['nimi']; ?>
+					<img src="<?php echo $puur[$id]['liik'] ?>">
+				<?php endforeach; ?>
+			</p>
+		</div>
+		<?php endforeach; ?>
+	<?php endif; ?>
