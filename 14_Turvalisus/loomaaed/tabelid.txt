@@ -32,12 +32,7 @@ INSERT INTO loomaaedMPilvik_kylastajad (username, passw, visits) VALUES
 ("Ants", SHA1("paroOl"), 16),
 ("AnimalFreak", SHA1("t3h44jLk2"), 5)
 
-/*Andmebaasivälja lisamine*/
-ALTER TABLE loomaaedMPilvik_kylastajad 
-ADD COLUMN roll ENUM('user', 'admin') 
-NOT NULL DEFAULT 'user'
-
-/*Adminiõiguste andmine*/
-UPDATE loomaaedMPilvik_kylastajad
-SET roll = 'admin'
-WHERE username = 'Ants'
+/*Kasutajale admini rolli andmine*/
+ALTER TABLE loomaaedMPilvik_kylastajad
+ADD COLUMN roll
+ENUM('user', 'admin') NOT NULL DEFAULT 'user'

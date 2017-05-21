@@ -11,7 +11,12 @@
 		<li><a href="?">Pealeht</a></li>
 		<?php if(isset($_SESSION['user'])): ?>
 			<li><a href="?page=loomad">Loomad</a></li>
-			<li><a href="?page=lisa">Lisa loomi</a></li>
+			<!-- Anna ainult adminile loomade lisamise võimalus-->
+			<?php if(isset($_SESSION['role'])): ?>
+				<?php if($_SESSION['role']=='admin'): ?>
+					<li><a href="?page=lisa">Lisa loomi</a></li>
+				<?php endif; ?>
+			<?php endif; ?>
 			<li><a href="?page=logout">Logi välja</a></li>
 		<?php else: ?>
 			<li><a href="?page=login">Logi sisse</a></li>

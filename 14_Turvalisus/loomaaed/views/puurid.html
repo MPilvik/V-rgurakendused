@@ -9,9 +9,12 @@ p.loomad {display: inline;}
 				Puuris <?php echo $id; ?> on:
 			</p>
 			<p class="loomad">
-				<?php foreach ($puur as $id => $puuriloom): ?>
+				<?php foreach ($puur as $id => $loom): ?>
 					<?php echo $puur[$id]['nimi']; ?>
 					<img src="<?php echo $puur[$id]['liik'] ?>">
+					<?php if($_SESSION['role']=='admin'): ?>
+						<a href="?page=muuda&id=<?php echo $loom['id'] ?>">Muuda</a>
+					<?php endif; ?>
 				<?php endforeach; ?>
 			</p>
 		</div>
