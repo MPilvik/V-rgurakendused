@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Vallakohtute protokollid</title>
+	<link rel="stylesheet" type="text/css" href="stiil.css">
+</head>
+<body>
+<div id="wrap">
+	<ul id="menu">
+		
+		<li><a href="?">Pealeht</a></li>
+		
+		<!-- Kui kasutaja on sisse loginud, siis näita ka protokollide sisestamise ning väljalogimise lehte-->
+		<?php if(isset($_SESSION['user'])): ?>
+		
+			<!-- Lisa protokoll -->
+			<li><a href="?page=protokoll">Lisa protokoll</a></li>
+			
+			<!-- Anna ainult adminile sisestatud protokollide ja kasutajate andmete vaatamise võimalus -->
+			<?php if(isset($_SESSION['role'])): ?>
+				<?php if($_SESSION['role']=='admin'): ?>
+					<li><a href="?page=vaata">Vaata protokolle</a></li>
+				<?php endif; ?>
+			<?php endif; ?>
+			
+			<!-- Logi välja-->
+			<li><a href="?page=logout">Logi välja</a></li>
+			
+		<!-- Kui kasutaja ei ole sisse loginud, siis näita talle sisselogimise lehte -->	
+		<?php else: ?>
+			<li><a href="?page=login">Logi sisse</a></li>
+		<?php endif; ?>
+		
+	</ul>
+	<div id="content">

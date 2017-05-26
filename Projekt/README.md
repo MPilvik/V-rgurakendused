@@ -8,4 +8,4 @@ Registreerunud kasutajale kuvatakse suvaline veel kirjeldamata pildifail, mille 
 
 Hetkel saab sisestada vaid tekste tervikuna (st korraga kogu tekst). Võimalik on lisada ka funktsionaalsus, mille abil kasutaja saab oma töö pooleli jätta ja salvestada ning sobival ajal tööd jätkata. 
 
-Rakenduse näitlikustamiseks on kasutatud rahvusarhiivi vallakohtute protokolle, kuna töötame nende tekstidega hetkel ka Tartu Ülikoolis ühe alanud digihumanitaaria projekti raames. Protokollide pildifailid on allalaaditavad rahvusarhiivi virtuaalse uurimissaali SAAGA veebikeskkonnast kohtuasutuste materjalide alt. 
+Rakenduse näitlikustamiseks on kasutatud rahvusarhiivi vallakohtute protokolle (alates aastast 1866), kuna töötame nende tekstidega hetkel ka Tartu Ülikoolis ühe alanud digihumanitaaria projekti raames. Protokollide pildifailid on allalaaditavad rahvusarhiivi virtuaalse uurimissaali SAAGA veebikeskkonnast kohtuasutuste materjalide alt. 

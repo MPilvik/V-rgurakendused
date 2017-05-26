@@ -1,0 +1,55 @@
+/* http://enos.itcollege.ee/phpmyadmin/ */
+
+CREATE TABLE IF NOT EXISTS vallakohtud_MPilvik (
+	id int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	vald varchar(30) NOT NULL,
+	failinimi varchar(100) NOT NULL,
+	protokolle int(1) NOT NULL,
+	jätk boolean NOT NULL,
+    lk_nr int(3),
+	kuupäev date NOT NULL,
+	number int(5),
+	pealkiri varchar(300) NOT NULL,
+	kohtumehed varchar(400),
+	sisu varchar(5000)
+)
+
+/* Sisesta failid */
+
+INSERT INTO vallakohtud_MPilvik (vald, failinimi, protokolle) VALUES
+("Alatskivi", "protokollide_failid/alatskivi_0001.jpg", 2),
+("Alatskivi", "protokollide_failid/alatskivi_0001.jpg", 2),
+("Alatskivi", "protokollide_failid/alatskivi_0002.jpg", 3),
+("Alatskivi", "protokollide_failid/alatskivi_0002.jpg", 3),
+("Alatskivi", "protokollide_failid/alatskivi_0002.jpg", 3),
+("Alatskivi", "protokollide_failid/alatskivi_0003.jpg", 4),
+("Alatskivi", "protokollide_failid/alatskivi_0003.jpg", 4),
+("Alatskivi", "protokollide_failid/alatskivi_0003.jpg", 4),
+("Alatskivi", "protokollide_failid/alatskivi_0003.jpg", 4),
+("Alatskivi", "protokollide_failid/alatskivi_0004.jpg", 5),
+("Alatskivi", "protokollide_failid/alatskivi_0004.jpg", 5),
+("Alatskivi", "protokollide_failid/alatskivi_0004.jpg", 5),
+("Alatskivi", "protokollide_failid/alatskivi_0004.jpg", 5),
+("Alatskivi", "protokollide_failid/alatskivi_0004.jpg", 5),
+("Tarvastu", "protokollide_failid/tarvastu_0001.jpg", 2),
+("Tarvastu", "protokollide_failid/tarvastu_0001.jpg", 2),
+("Tarvastu", "protokollide_failid/tarvastu_0002.jpg", 4),
+("Tarvastu", "protokollide_failid/tarvastu_0002.jpg", 4),
+("Tarvastu", "protokollide_failid/tarvastu_0002.jpg", 4),
+("Tarvastu", "protokollide_failid/tarvastu_0002.jpg", 4),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0003.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8),
+("Tarvastu", "protokollide_failid/tarvastu_0004.jpg", 8)

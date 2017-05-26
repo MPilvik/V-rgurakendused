@@ -1,0 +1,1 @@
+<!-- Kasutatud on Võrgurakendused I kursusel kasutatud materjale ning skriptiosi. Kui skriptiosi on kasutatud muutmata kujul, on sellele vastavas kohas viidatud. -->
