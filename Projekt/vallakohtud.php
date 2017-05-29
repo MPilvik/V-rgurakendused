@@ -1,7 +1,7 @@
 <?php
 require_once("funktsioonid.php");
 session_start();
-// connect_db();
+connect_db();
 
 $page="pealeht";
 if (!empty($_GET["page"])){
@@ -12,9 +12,12 @@ include_once("vaated/head.html");
 
 switch($page){
 	case "login":
-		logi();
+		login();
 	break;
-	case "protokoll":
+	case "register":
+		register();
+	break;
+	case "protokolli_vorm":
 		lisa_protokoll();
 	break;
 	case "logout":
