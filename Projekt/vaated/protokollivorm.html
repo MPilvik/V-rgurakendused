@@ -1,18 +1,5 @@
 <div id="protokollivorm">
-	<form action="?page=protokollivorm" method="POST" >
-		Vali fail:
-		<select name="fail">
-		<option value="" selected="selected"></option>
-		<?php
-			$files = scandir(__DIR__ . '/protokollide_failid');
-			foreach($files as $key => $yksfail){
-				if($key > 1){
-					echo "<option value='" . $yksfail . "'>".$yksfail."</option>";
-				}
-			}
-		?>
-		</select>
-		<br>
+	<form action="?page=protokollivorm" method="POST">
 		<fieldset>
 			<legend>Metaandmed:</legend>
 			Protokoll on... 
@@ -20,14 +7,14 @@
 			<option>juba sisestatud protokolli jätk</option>
 			<option>uus protokoll</option>
 			</select> *<br>
-			Lehekülje number: <input type="number" name="lk_nr"/><br>
-			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP"/> *<br>
-			Protokolli number: <input type="number" name="number" /><br>
-			Protokolli pealkiri: <textarea name="pealkiri"></textarea> *<br>
-			Kohtumehed: <input type="text" name="kohtumehed"/>
+			Lehekülje number: <input type="number" name="lk_nr" value="<?php if(isset($_POST['lk_nr'])){echo htmlspecialchars($_POST['lk_nr']);}?>"/><br>
+			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP"/ value="<?php if(isset($_POST['kuupäev'])){echo htmlspecialchars($_POST['kuupäev'];)}?>"> *<br>
+			Protokolli number: <input type="number" name="number" value="<?php if(isset($_POST['number'])){echo htmlspecialchars($_POST['number']);}?>" /><br>
+			Protokolli pealkiri: <textarea name="pealkiri"><?php if(isset($_POST['pealkiri'])){echo htmlspecialchars($_POST['pealkiri']);}?></textarea> *<br>
+			Kohtumehed: <input type="text" name="kohtumehed" value="<?php if(isset($_POST['kohtumehed'])){echo htmlspecialchars($_POST['kohtumehed']);}?>"/>
 		</fieldset>
 		Protokolli tekst:<br>
-		<textarea name="sisu" rows="20" cols="40"></textarea><br>
+		<textarea name="sisu" rows="20" cols="40"><?php if(isset($_POST['sisu'])){echo htmlspecialchars($_POST['sisu']);}?></textarea><br>
 		<input type="submit" value="Salvesta"/><br>
 	</form>
 	<?php if (isset($errors)):?>

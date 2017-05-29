@@ -126,12 +126,37 @@ function register(){
 	
 }
 
+function vali_pilt() {
+	global $connection;
+	if(!empty($_SESSION['user'])){
+		
+		require('vaated/pildivalik.html');
+		// kontrolli, kas kasutaja on vormi ära saatnud
+		if(isset($_SERVER['REQUEST_METHOD'])){
+			// kontrolli, kas vorm on saadetud 'POST' meetodil
+			if ($_SERVER['REQUEST_METHOD']=="POST"){
+				
+				if(!empty($_POST['fail'])){
+					$_SESSION['fail'] = mysqli_real_escape_string($connection, $_POST['fail']);
+					header("Location: ?page=protokollivorm");
+					
+				}
+				else{
+					$e = "Vali fail!";
+					echo "<div style='color:red;'>".$e."</div>";
+				}
+			}
+		}
+	}
+}
+
 function lisa_protokoll(){
 	
 	global $connection;
 	
 	// kontrolli, kas kasutaja on ikka sisse loginud 
 	if(!empty($_SESSION['user'])){
+		
 		$jätk = "";
 		$lk_nr = "";
 		$kuupäev = "";
@@ -139,8 +164,6 @@ function lisa_protokoll(){
 		$pealkiri = "";
 		$kohtumehed = "";
 		$sisu = "";
-		$fail = "";
-		require('vaated/protokollivorm.html');
 		
 		// kontrolli, kas kasutaja on vormi ära saatnud
 		if(isset($_SERVER['REQUEST_METHOD'])){
@@ -148,7 +171,10 @@ function lisa_protokoll(){
 			if ($_SERVER['REQUEST_METHOD']=="POST"){
 				$errors = array();
 				$sisestaja = $_SESSION['user'];
-				$fail = "protokollide_failid/".mysqli_real_escape_string($connection, $_POST['fail']);
+				
+				$fail = "protokollide_failid/".$_SESSION['fail'];
+				
+				print_r($_POST);
 				
 				if (!empty($_POST['jätk'])){
 					if($_POST['jätk']=="juba sisestatud protokolli jätk"){
@@ -161,37 +187,42 @@ function lisa_protokoll(){
 				else{
 					$errors[]="Protokolli kirjeldus ei tohi olla tühi!";
 				}
-					
+				
 				if(!empty($_POST['lk_nr']) && is_numeric($_POST['lk_nr'])){
 					$lk_nr = mysqli_real_escape_string($connection, $_POST['lk_nr']);
 				}
 				else{
 					$lk_nr = "";
 				}
+				
 				if(!empty($_POST['kuupäev'])){
 					$kuupäev = mysqli_real_escape_string($connection, $_POST['kuupäev']);
 				}
 				else{
 					$errors[]="Kuupäev ei tohi olla tühi!";
 				}
+				
 				if(!empty($_POST['number']) && is_numeric($_POST['number'])){
 					$number = mysqli_real_escape_string($connection, $_POST['number']);
 				}
 				else{
 					$number = "";
 				}
+				
 				if(!empty($_POST['pealkiri'])){
 					$pealkiri = mysqli_real_escape_string($connection, $_POST['pealkiri']);
 				}
 				else{
 					$errors[]="Pealkiri ei tohi olla tühi!";
 				}
+				
 				if(!empty($_POST['kohtumehed'])){
 					$kohtumehed = mysqli_real_escape_string($connection, $_POST['kohtumehed']);
 				}
 				else{
 					$kohtumehed="";
 				}
+				
 				if(!empty($_POST['sisu'])){
 					$sisu = mysqli_real_escape_string($connection, $_POST['sisu']);
 				}
@@ -199,9 +230,11 @@ function lisa_protokoll(){
 					$errors[]="Sisu ei tohi olla tühi!";
 				}
 					
-				
+				print_r($errors);
 				// kui kõik vajalikud väljad said täidetud
 				if(empty($errors)){
+					
+					// kontrolli, kas faili kohta on juba protokoll olemas
 					
 					// uuenda andmebaasi
 					$query = "UPDATE vallakohtud_MPilvik 
@@ -225,6 +258,9 @@ function lisa_protokoll(){
 					} else {
 						$errors[] = "Protokolli lisamine ei õnnestunud!";
 					}
+				}
+				else{
+					include('vaated/protokollivorm.html');
 				}
 			}
 			else {

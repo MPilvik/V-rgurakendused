@@ -17,6 +17,9 @@ switch($page){
 	case "register":
 		register();
 	break;
+	case "pildivalik":
+		vali_pilt();
+	break;
 	case "protokollivorm":
 		lisa_protokoll();
 	break;

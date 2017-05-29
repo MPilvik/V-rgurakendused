@@ -1,0 +1,18 @@
+<div id="pildivalik">
+	<form action="?page=pildivalik" method="POST" >
+		Vali fail:
+		<select name="fail">
+		<option value="" selected="selected"></option>
+		<?php
+			$files = scandir(__DIR__ . '/protokollide_failid');
+			foreach($files as $key => $yksfail){
+				if($key > 1){
+					echo "<option value='" . $yksfail . "'>".$yksfail."</option>";
+				}
+			}
+		?>
+		</select>
+		<input type="submit" value="Kinnita valik"/><br>
+	</form>
+	<br>
+</div>
