@@ -199,12 +199,11 @@ function lisa_protokoll(){
 					$errors[]="Sisu ei tohi olla tühi!";
 				}
 					
-				print_r($errors);
 				
 				// kui kõik vajalikud väljad said täidetud
 				if(empty($errors)){
 					
-					
+					// uuenda andmebaasi
 					$query = "UPDATE vallakohtud_MPilvik 
 					SET 
 					sisestaja = '$sisestaja', 
@@ -218,14 +217,14 @@ function lisa_protokoll(){
 					WHERE failinimi='$fail'";
 					$result = mysqli_query($connection, $query) or die ("Ei õnnestunud lisada!".mysqli_error($connection));
 				
-					/*
-					// kontrolli, kas õnnestus
+					// kontrolli, kas andmebaasi uuendamine õnnestus
 					if(mysqli_insert_id($connection) > 0){
-						header("Location: ?page=loomad");
+						$teade = "Protokolli lisamine õnnestus. Soovi korral võid lisada veel protokolle.";
+						echo "<script type='text/javascript'>alert('$teade');</script>";
+						header('Location: ?');
 					} else {
-						$errors[] = "Lisamine ei õnnestunud!";
+						$errors[] = "Protokolli lisamine ei õnnestunud!";
 					}
-					*/
 				}
 			}
 			else {

@@ -20,14 +20,14 @@
 			<option>juba sisestatud protokolli jätk</option>
 			<option>uus protokoll</option>
 			</select> *<br>
-			Lehekülje number: <input type="number" name="lk_nr" value="<?php echo $lk_nr; ?>"/><br>
-			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP" value="<?php echo $kuupäev; ?>"/> *<br>
-			Protokolli number: <input type="number" name="number" value="<?php echo $number; ?>"/><br>
-			Protokolli pealkiri: <textarea name="pealkiri" value="<?php echo $pealkiri; ?>"></textarea> *<br>
-			Kohtumehed: <input type="text" name="kohtumehed" value="<?php echo $kohtumehed; ?>"/>
+			Lehekülje number: <input type="number" name="lk_nr"/><br>
+			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP"/> *<br>
+			Protokolli number: <input type="number" name="number" /><br>
+			Protokolli pealkiri: <textarea name="pealkiri"></textarea> *<br>
+			Kohtumehed: <input type="text" name="kohtumehed"/>
 		</fieldset>
 		Protokolli tekst:<br>
-		<textarea name="sisu" rows="20" cols="40" value="<?php echo $sisu; ?>"></textarea><br>
+		<textarea name="sisu" rows="20" cols="40"></textarea><br>
 		<input type="submit" value="Salvesta"/><br>
 	</form>
 	<?php if (isset($errors)):?>
