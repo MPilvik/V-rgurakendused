@@ -1,19 +1,19 @@
-<div id="protokolli_vorm">
-	<form action="?page=protokolli_vorm" method="POST" >
+<div id="protokollivorm">
+	<form action="?page=protokollivorm" method="POST" >
 		<fieldset>
 			<legend>Metaandmed:</legend>
 			Protokoll on... <select>
 			<option value="TRUE">juba sisestatud protokolli jätk.</option>
 			<option value="FALSE">uus protokoll.</option>
 			</select><br>
-			Lehekülje number: <input type="number" name="lk_nr"><br>
-			Protokolli kuupäev: <input type="text" name="kuupäev"><br>
-			Protokolli number: <input type="number" name="number"><br>
-			Protokolli pealkiri: <textarea name="pealkiri"></textarea><br>
-			Kohtumehed: <input type="text" name="kohtumehed"><br>
+			Lehekülje number: <input type="number" name="lk_nr"/><br>
+			Protokolli kuupäev: <input type="text" name="kuupäev"/><br>
+			Protokolli number: <input type="number" name="number"/><br>
+			Protokolli pealkiri: <textarea name="pealkiri"/><br>
+			Kohtumehed: <input type="text" name="kohtumehed"/>
 		</fieldset>
 		<textarea name="sisutekst" rows="20" cols="40">Protokolli tekst</textarea><br>
-		<input type="button" value="Salvesta"><br>
+		<input type="submit" value="Salvesta"/><br>
 	</form>
 	<?php if (isset($errors)):?>
 		<?php foreach($errors as $error):?>

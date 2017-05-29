@@ -1,0 +1,38 @@
+<div id="protokollivorm">
+	<form action="?page=protokollivorm" method="POST" >
+		Vali fail:
+		<select name="fail">
+		<option value="" selected="selected"></option>
+		<?php
+			$files = scandir(__DIR__ . '/protokollide_failid');
+			foreach($files as $key => $yksfail){
+				if($key > 1){
+					echo "<option value='" . $yksfail . "'>".$yksfail."</option>";
+				}
+			}
+		?>
+		</select>
+		<br>
+		<fieldset>
+			<legend>Metaandmed:</legend>
+			Protokoll on... 
+			<select name="jätk">
+			<option>juba sisestatud protokolli jätk</option>
+			<option>uus protokoll</option>
+			</select> *<br>
+			Lehekülje number: <input type="number" name="lk_nr" value="<?php echo $lk_nr; ?>"/><br>
+			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP" value="<?php echo $kuupäev; ?>"/> *<br>
+			Protokolli number: <input type="number" name="number" value="<?php echo $number; ?>"/><br>
+			Protokolli pealkiri: <textarea name="pealkiri" value="<?php echo $pealkiri; ?>"></textarea> *<br>
+			Kohtumehed: <input type="text" name="kohtumehed" value="<?php echo $kohtumehed; ?>"/>
+		</fieldset>
+		Protokolli tekst:<br>
+		<textarea name="sisu" rows="20" cols="40" value="<?php echo $sisu; ?>"></textarea><br>
+		<input type="submit" value="Salvesta"/><br>
+	</form>
+	<?php if (isset($errors)):?>
+		<?php foreach($errors as $error):?>
+			<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+		<?php endforeach;?>
+	<?php endif;?>
+</div>

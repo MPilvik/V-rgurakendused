@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS vallakohtud_MPilvik (
 	vald varchar(30) NOT NULL,
 	failinimi varchar(100) NOT NULL,
 	protokolle int(1) NOT NULL,
+	sisestaja varchar(100) NOT NULL,
 	jätk boolean NOT NULL,
     lk_nr int(3),
 	kuupäev date NOT NULL,

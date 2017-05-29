@@ -17,7 +17,7 @@ switch($page){
 	case "register":
 		register();
 	break;
-	case "protokolli_vorm":
+	case "protokollivorm":
 		lisa_protokoll();
 	break;
 	case "logout":
