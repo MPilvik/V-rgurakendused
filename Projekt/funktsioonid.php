@@ -43,6 +43,7 @@ function login(){
 				
 				if(mysqli_num_rows($result)>0){
 					$_SESSION['user'] = $username;
+					
 					header("Location: ?");
 				} else {
 					$errors[] = "Sellist kasutajat ei ole!";
@@ -73,10 +74,21 @@ function register(){
 	if(isset($_SERVER['REQUEST_METHOD'])){
 		// kontrolli, kas vorm on saadetud 'POST' meetodil
 		if ($_SERVER['REQUEST_METHOD']=="POST"){
-			$errors = array();
-			// kontrolli, kas nii kasutajanime kui ka parooli väljad on täidetud 
-			if(empty($_POST['user']) || empty($_POST['pass'])){
-				$errors[]='Kasutajanime või parooli pole sisestatud!';
+			
+			// kontrolli, kas kasutajanimi ja parool on täidetud
+			// kui ei ole kasutajat
+			if(empty($_POST['user'])){
+				$err_nouser='Kasutajanime pole sisestatud!';
+					// kontrolli, kas ka parooli pole täidetud
+					if(empty($_POST['pass'])){
+						$err_nopass='Parooli pole sisestatud!';
+					}
+				//require_once('vaated/register.html');
+			}
+			// kui ainult parooli välja pole täidetud
+			else if(empty($_POST['pass'])){
+				$err_nopass='Parooli pole sisestatud!';
+				//require_once('vaated/register.html');
 			}
 			// kui on, siis
 			else {
@@ -87,7 +99,8 @@ function register(){
 				$kontrolli_kasutajanimesid = mysqli_query($connection, "SELECT user FROM vallakohtud_MPilvik_kasutajad WHERE user='$username'") or die ("Ei õnnestunud!".mysqli_error());
 
 				if(mysqli_num_rows($kontrolli_kasutajanimesid) != 0){
-					$errors[]='Selline kasutaja on juba olemas!';
+					$err_userexists='Selline kasutaja on juba olemas!';
+					require_once('vaated/register.html');
 				}
 				// kui ei eksisteeri, siis
 				else {
@@ -103,27 +116,21 @@ function register(){
 					// kui kõik õnnestus, siis logi ka kasutaja sisse
 					if(mysqli_num_rows($tulemus2)>$kasutajaid1){
 						$_SESSION['user'] = $username;
-						if(isset($_SESSION['user'])){
-							
-							$teade = "Oled registreeritud ja sisse logitud.";
-							echo "<script type='text/javascript'>alert('$teade');</script>";
-							header('Location: ?');
-						}
+						echo '<script type="text/javascript">alert("Oled registreeritud ja sisse logitud.");';
+						echo 'window.location.href = "vallakohtud.php";';
+						echo '</script>';
+						
 						
 					} else {
-						$errors[] = "Kasutaja registreerimine ebaõnnestus!";
+						$err_failed = "Kasutaja registreerimine ebaõnnestus!";
+						print($err_failed);
 					}
 				}
 			}
+			require_once('vaated/register.html');
 		}
-		else {
-			include_once('vaated/register.html');
-		}
+		require_once('vaated/register.html');
 	}
-	else{
-		include_once('vaated/register.html');
-	}
-	
 }
 
 function vali_pilt() {
@@ -142,8 +149,8 @@ function vali_pilt() {
 					
 				}
 				else{
-					$e = "Vali fail!";
-					echo "<div style='color:red;'>".$e."</div>";
+					$err_nofile = "Vali fail!";
+					echo "<div style='color:red;'>".$err_nofile."</div>";
 				}
 			}
 		}
@@ -171,10 +178,8 @@ function lisa_protokoll(){
 			if ($_SERVER['REQUEST_METHOD']=="POST"){
 				$errors = array();
 				$sisestaja = $_SESSION['user'];
-				
 				$fail = "protokollide_failid/".$_SESSION['fail'];
 				
-				print_r($_POST);
 				
 				if (!empty($_POST['jätk'])){
 					if($_POST['jätk']=="juba sisestatud protokolli jätk"){
@@ -185,7 +190,8 @@ function lisa_protokoll(){
 					}
 				}
 				else{
-					$errors[]="Protokolli kirjeldus ei tohi olla tühi!";
+					$err_protjätk="Protokolli kirjeldus ei tohi olla tühi!";
+					$errors[] = $err_protjätk;
 				}
 				
 				if(!empty($_POST['lk_nr']) && is_numeric($_POST['lk_nr'])){
@@ -199,7 +205,8 @@ function lisa_protokoll(){
 					$kuupäev = mysqli_real_escape_string($connection, $_POST['kuupäev']);
 				}
 				else{
-					$errors[]="Kuupäev ei tohi olla tühi!";
+					$err_protkuup="Kuupäev ei tohi olla tühi!";
+					$errors[] = $err_protkuup;
 				}
 				
 				if(!empty($_POST['number']) && is_numeric($_POST['number'])){
@@ -213,7 +220,8 @@ function lisa_protokoll(){
 					$pealkiri = mysqli_real_escape_string($connection, $_POST['pealkiri']);
 				}
 				else{
-					$errors[]="Pealkiri ei tohi olla tühi!";
+					$err_pealkiri="Pealkiri ei tohi olla tühi!";
+					$errors[] = $err_pealkiri;
 				}
 				
 				if(!empty($_POST['kohtumehed'])){
@@ -227,10 +235,10 @@ function lisa_protokoll(){
 					$sisu = mysqli_real_escape_string($connection, $_POST['sisu']);
 				}
 				else{
-					$errors[]="Sisu ei tohi olla tühi!";
+					$err_sisu="Sisu ei tohi olla tühi!";
+					$errors[] = $err_sisu;
 				}
 					
-				print_r($errors);
 				// kui kõik vajalikud väljad said täidetud
 				if(empty($errors)){
 					
@@ -251,30 +259,26 @@ function lisa_protokoll(){
 					$result = mysqli_query($connection, $query) or die ("Ei õnnestunud lisada!".mysqli_error($connection));
 				
 					// kontrolli, kas andmebaasi uuendamine õnnestus
-					if(mysqli_insert_id($connection) > 0){
-						$teade = "Protokolli lisamine õnnestus. Soovi korral võid lisada veel protokolle.";
-						echo "<script type='text/javascript'>alert('$teade');</script>";
-						header('Location: ?');
+					if(mysqli_affected_rows($connection) > 0){
+						
+						echo '<script type="text/javascript">alert("Protokolli lisamine õnnestus. Soovi korral võid lisada veel protokolle.");';
+						echo 'window.location.href = "vallakohtud.php";';
+						echo '</script>';
+						
 					} else {
-						$errors[] = "Protokolli lisamine ei õnnestunud!";
+						$err_failed2 = "Protokolli lisamine ei õnnestunud!";
+						$errors[] = $err_failed2;
 					}
 				}
-				else{
-					include('vaated/protokollivorm.html');
-				}
 			}
-			else {
-				include_once('vaated/protokollivorm.html');
-			}
+			
+			require_once('vaated/protokollivorm.html');
 		}
-		else {
-			include_once('vaated/protokollivorm.html');
-		}
+		require_once('vaated/protokollivorm.html');
+	} 
+	else{
+		require_once('vaated/login.html');
 	}
-	else {
-		include_once('vaated/login.html');
-	}
-	
 }
 /*
 $dir = "big"; // kausta nimi, mida avada

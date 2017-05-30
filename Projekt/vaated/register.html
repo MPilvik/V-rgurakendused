@@ -1,13 +1,10 @@
 <div id="register">
 	<p> Registreeri uus kasutaja. </p>
 	<form action="?page=register" method="POST" >
-		<input type="text" name="user" placeholder="kasutajanimi"/><br/>
-		<input type="password" name="pass" placeholder="parool"/><br/>
+		<input type="text" name="user" placeholder="kasutajanimi"/><span style='color:red;' class='errorsright'><?php if(isset($err_nouser)) {echo $err_nouser;} else if(isset($err_userexists)) {echo $err_userexists;} ?></span>
+		<br/>
+		<input type="password" name="pass" placeholder="parool"/><span style='color:red;' class='errorsright'><?php if(isset($err_nopass)) {echo $err_nopass;} ?></span>
+		<br/>
 		<input type="submit" value="Registreeri!"/>
 	</form>
-	<?php if (isset($errors)):?>
-		<?php foreach($errors as $error):?>
-			<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
-		<?php endforeach;?>
-	<?php endif;?>
 </div>

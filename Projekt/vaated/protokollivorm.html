@@ -1,25 +1,22 @@
 <div id="protokollivorm">
+	<span style='color:red;'><?php if(isset($err_failed2)) {echo $err_failed2;}?></span>
 	<form action="?page=protokollivorm" method="POST">
 		<fieldset>
 			<legend>Metaandmed:</legend>
 			Protokoll on... 
 			<select name="jätk">
+			<option selected="selected"></option>
 			<option>juba sisestatud protokolli jätk</option>
 			<option>uus protokoll</option>
-			</select> *<br>
+			</select> * <span style='color:red;' class='errorsright'><?php if(isset($err_protjätk)) {echo $err_protjätk;} ?></span><br>
 			Lehekülje number: <input type="number" name="lk_nr" value="<?php if(isset($_POST['lk_nr'])){echo htmlspecialchars($_POST['lk_nr']);}?>"/><br>
-			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP"/ value="<?php if(isset($_POST['kuupäev'])){echo htmlspecialchars($_POST['kuupäev'];)}?>"> *<br>
+			Protokolli kuupäev: <input type="text" name="kuupäev" placeholder="AAAA-KK-PP" value="<?php if(isset($_POST['kuupäev'])){echo htmlspecialchars($_POST['kuupäev']);}?>"/> * <span style='color:red;' class='errorsright'><?php if(isset($err_protkuup)) {echo $err_protkuup;} ?></span><br>
 			Protokolli number: <input type="number" name="number" value="<?php if(isset($_POST['number'])){echo htmlspecialchars($_POST['number']);}?>" /><br>
-			Protokolli pealkiri: <textarea name="pealkiri"><?php if(isset($_POST['pealkiri'])){echo htmlspecialchars($_POST['pealkiri']);}?></textarea> *<br>
+			Protokolli pealkiri: <textarea name="pealkiri"><?php if(isset($_POST['pealkiri'])){echo htmlspecialchars($_POST['pealkiri']);}?></textarea> * <span style='color:red;' class='errorsright'><?php if(isset($err_pealkiri)) {echo $err_pealkiri;} ?></span><br>
 			Kohtumehed: <input type="text" name="kohtumehed" value="<?php if(isset($_POST['kohtumehed'])){echo htmlspecialchars($_POST['kohtumehed']);}?>"/>
 		</fieldset>
-		Protokolli tekst:<br>
-		<textarea name="sisu" rows="20" cols="40"><?php if(isset($_POST['sisu'])){echo htmlspecialchars($_POST['sisu']);}?></textarea><br>
+		Protokolli tekst: *<br>
+		<textarea name="sisu" rows="20" cols="40"><?php if(isset($_POST['sisu'])){echo htmlspecialchars($_POST['sisu']);}?></textarea> <span style='color:red;' class='errorsright'><?php if(isset($err_sisu)) {echo $err_sisu;} ?></span><br>
 		<input type="submit" value="Salvesta"/><br>
 	</form>
-	<?php if (isset($errors)):?>
-		<?php foreach($errors as $error):?>
-			<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
-		<?php endforeach;?>
-	<?php endif;?>
 </div>
